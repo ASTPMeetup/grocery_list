@@ -6,6 +6,29 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div class="form">
+        <blockquote>
+          <p>Below is an app that demonstrates my infinite knowledge of MongoDB!</p>
+        </blockquote>
+        <br>
+        <form method="POST" action="/Item">
+          <p>Food item:</p>
+          <input type="text" name="name">
+          <p>Quantity:</p>
+          <input type="text" name="quantity">
+          <br>
+          <br>
+          <input type="submit" value="Save grocery item!" class="button">
+        </form>
+        <br>
+        <blockquote>
+          <h2>Grocery List:</h2>
+            <ul>
+              <% for (item in items){ %>
+                <li><%= items[item]['name'] %>: <%= items[item]['quantity'] %></li>
+              <% } %>
+            </ul>
+        </blockquote>
+      <div>
   </body>
 </html>
