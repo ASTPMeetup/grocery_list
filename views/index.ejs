@@ -3,6 +3,8 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script type="text/javascript" src="/javascripts/script.js"></script>
   </head>
   <body>
     <h1><%= title %></h1>
@@ -11,24 +13,25 @@
           <p>Below is an app that demonstrates my infinite knowledge of MongoDB!</p>
         </blockquote>
         <br>
-        <form method="POST" action="/Item">
+        <form name="grocery_input" method="POST" action="/Item">
           <p>Food item:</p>
-          <input type="text" name="name">
+          <input name="name" type="text" class="name_input" required>
           <p>Quantity:</p>
-          <input type="text" name="quantity">
+          <input type="number" name="quantity" class="quantity_input" max="99" required>
           <br>
           <br>
-          <input type="submit" value="Save grocery item!" class="button">
+          <input type="submit" value="Add item" class="button">
         </form>
         <br>
         <blockquote>
           <h2>Grocery List:</h2>
             <ul>
               <% for (item in items){ %>
-                <li><%= items[item]['name'] %>: <%= items[item]['quantity'] %></li>
+                <li><%= items[item]['name'] %> (<%= items[item]['quantity'] %>)</li>
               <% } %>
             </ul>
         </blockquote>
       <div>
+      <div id="alert"></div>
   </body>
 </html>

@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 30px;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 20px;
   color: #464646;
@@ -17,7 +17,7 @@ blockquote {
 
 .button {
     margin: 10px 0px 10px 0px;
-    background-color: #505050; /* Green */
+    background-color: #003300; /* Green */
     border: none;
     color: white;
     padding: 8px 32px;
@@ -28,4 +28,12 @@ blockquote {
 
 h1, h2 {
   color: #003300;
+}
+
+input:focus {
+    border: 3px solid #CCFFCC;
+}
+
+.quantity_input {
+  width: 50px;
 }

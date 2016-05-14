@@ -3,7 +3,7 @@ var Schema   = mongoose.Schema;
 
 var taskSchema = new Schema({
     'name' : String,
-    'quantity' : String
+    'quantity' : {type: Number, max: 99}
 });
 
 module.exports = mongoose.model('Items', taskSchema);

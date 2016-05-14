@@ -10,20 +10,20 @@ router.get('/', function(req, res, next) {
     if(err){
       console.log(err);
     }
-    res.render('index', {
-      title: 'Grocery List App!',
-      items: items
-    });
+    else {
+      res.render('index', {
+        title: 'Grocery List App!',
+        items: items
+      });
+    }
   });
 });
 
 router.post('/Item', function(req, res, next) {
   var item = new Items ({
-        name : req.body.name,
-        quantity: req.body.quantity
+      name : req.body.name,
+      quantity: req.body.quantity
   });
-
-  console.log(item);
 
   item.save(function(err, items) {
     if(err){
