@@ -5,8 +5,6 @@ var Items = require('../models/Items.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   Items.find(function(err, items) {
-    // since the function is asyncrounous, we have to pass in a callback to
-    // be ran when the db query is finished
     if(err){
       console.log(err);
     }
@@ -30,6 +28,39 @@ router.post('/Item', function(req, res, next) {
       console.log(err);
     }
     res.redirect('/');
+  });
+});
+
+/*
+* GET
+*/
+router.get('/:id', function (req, res) {
+  var id = req.params.id;
+  Items.findOne({_id: id}, function (err, item) {
+    return res.json(item);
+  });
+});
+/*
+* PUT
+*/
+router.put('/:id', function (req, res) {
+  var id = req.params.id;
+  Items.findOne({_id: id}, function (err, items) {
+    item.text = req.body.text ? req.body.text : item.text;
+
+    item.save(function (err, items) {
+      return res.json(item);
+    });
+  });
+});
+
+/*
+* DELETE
+*/
+router.delete('/:id', function (req, res) {
+  var id = req.params.id;
+  Items.findByIdAndRemove(id, function (err, items) {
+    return res.json(item);
   });
 });
 
