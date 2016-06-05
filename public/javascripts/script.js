@@ -45,12 +45,11 @@
   });
 
   var itemsCollection = new ItemsCollection([item1, item2, item3]);
-  console.log(itemsCollection);
 
   itemsCollection.fetch({
       success: function(items){
-        console.log('Fetching like a boss!');
-        var itemsView = new ItemsView({collection: itemsCollection});
-        $('#app').html(itemsView.render().el);
+        console.log('collection fetch working', items);
+        // var itemsView = new ItemsView({collection: itemsCollection});
+        // $('#app').html(itemsView.render().el);
       }
   });

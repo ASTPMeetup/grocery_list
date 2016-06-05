@@ -1,4 +1,4 @@
-var TaskModel = require('../models/Items.js');
+var Items = require('../models/Items.js');
 
 /**
 *  Change Task Models to Items
@@ -12,7 +12,7 @@ module.exports = {
   */
   list: function (req, res) {
     Items.find(function (err, items) {
-      return res.json(item);
+      return res.json(items);
     });
   },
 

@@ -1,67 +1,28 @@
 var express = require('express');
 var router = express.Router();
-var Items = require('../models/Items.js');
+var ItemsController = require('../controllers/ItemsController.js');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  Items.find(function(err, items) {
-    if(err){
-      console.log(err);
-    }
-    else {
-      res.render('index', {
-        title: 'Grocery List App!',
-        items: items
-      });
-    }
-  });
+router.get('/', function (req, res) {
+  ItemsController.list(req, res);
 });
 
-router.post('/Item', function(req, res, next) {
-  var item = new Items ({
-      name : req.body.name,
-      quantity: req.body.quantity
-  });
-
-  item.save(function(err, items) {
-    if(err){
-      console.log(err);
-    }
-    res.redirect('/');
-  });
+router.get('/Item', function (req, res) {
+  ItemsController.list(req, res);
 });
 
-/*
-* GET
-*/
 router.get('/:id', function (req, res) {
-  var id = req.params.id;
-  Items.findOne({_id: id}, function (err, item) {
-    return res.json(item);
-  });
+  ItemsController.show(req, res);
 });
-/*
-* PUT
-*/
+
+router.post('/', function (req, res) {
+  ItemsController.create(req, res);
+});
+
 router.put('/:id', function (req, res) {
-  var id = req.params.id;
-  Items.findOne({_id: id}, function (err, items) {
-    item.text = req.body.text ? req.body.text : item.text;
-
-    item.save(function (err, items) {
-      return res.json(item);
-    });
-  });
+  ItemsController.update(req, res);
 });
 
-/*
-* DELETE
-*/
 router.delete('/:id', function (req, res) {
-  var id = req.params.id;
-  Items.findByIdAndRemove(id, function (err, items) {
-    return res.json(item);
-  });
+  ItemsController.remove(req, res);
 });
-
 module.exports = router;
