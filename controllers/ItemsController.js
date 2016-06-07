@@ -3,7 +3,7 @@ var Items = require('../models/Items.js');
 /**
 *  Change Task Models to Items
 *
-* @description :: Server-side logic for managing tasks.
+* @description :: Server-side logic for managing items.
 */
 module.exports = {
 
@@ -22,7 +22,7 @@ module.exports = {
   show: function (req, res) {
     var id = req.params.id;
     Items.findOne({_id: id}, function (err, items) {
-      return res.json(item);
+      return res.json(items);
     });
   },
 
@@ -31,11 +31,12 @@ module.exports = {
   */
   create: function (req, res) {
     var item = new Items({
-            text : req.body.text
+        name : req.body.name,
+        quantity : req.body.quantity,
     });
 
-    task.save(function (err, task) {
-      return res.json(task);
+    item.save(function (err, item) {
+      return res.json(item);
     });
   },
 
@@ -44,10 +45,10 @@ module.exports = {
   */
   update: function (req, res) {
     var id = req.params.id;
-    TaskModel.findOne({_id: id}, function (err, task) {
-      task.text = req.body.text ? req.body.text : task.text;
-      task.save(function (err, task) {
-        return res.json(task);
+    Items.findOne({_id: id}, function (err, item) {
+      item.text = req.body.text ? req.body.text : item.text;
+      item.save(function (err, item) {
+        return res.json(item);
       });
     });
   },
@@ -57,8 +58,8 @@ module.exports = {
   */
   remove: function (req, res) {
     var id = req.params.id;
-    TaskModel.findByIdAndRemove(id, function (err, task) {
-      return res.json(task);
+    Items.findByIdAndRemove(id, function (err, item) {
+      return res.json(item);
     });
   }
 };
